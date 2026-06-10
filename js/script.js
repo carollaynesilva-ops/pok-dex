@@ -1,78 +1,117 @@
-const pokemonName = document.querySelector('.pokemon-name');
-const pokemonNumber = document.querySelector('.pokemon-number');
-const pokemonImage = document.querySelector('.pokemon-image');
-const form = document.querySelector('.form');
-const input = document.querySelector('.input-search');
+const pokemonName = document.querySelector(".pokemon-name");
+const pokemonNumber = document.querySelector(".pokemon-number");
+const pokemonImage = document.querySelector(".pokemon-image");
+const pokemonHeight = document.querySelector(".pokemon-height");
+const pokemonWeight = document.querySelector(".pokemon-weight");
 
-let searchPokemon = 1;
+const form = document.querySelector(".form");
+const input = document.querySelector(".input-search");
 
-const fetchPokemon = async (pokemon) => {
+let currentPokemon = 1;
 
-    const APIResponse = await fetch(
+const colors = {
+    grass: "#78C850",
+    poison: "#A040A0",
+    fire: "#F08030",
+    water: "#6890F0",
+    electric: "#F8D030",
+    bug: "#A8B820",
+    normal: "#A8A878",
+    flying: "#A890F0",
+    ground: "#E0C068",
+    fairy: "#EE99AC",
+    fighting: "#C03028",
+    psychic: "#F85888",
+    rock: "#B8A038",
+    ghost: "#705898",
+    ice: "#98D8D8",
+    dragon: "#7038F8",
+    dark: "#705848",
+    steel: "#B8B8D0"
+};
+
+async function fetchPokemon(pokemon) {
+
+    const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${pokemon}`
     );
 
-    if (APIResponse.status === 200) {
-        return await APIResponse.json();
+    if (response.status === 200) {
+        return await response.json();
     }
 }
 
-const renderPokemon = async (pokemon) => {
-
-    pokemonName.innerHTML = 'Carregando...';
-    pokemonNumber.innerHTML = '';
+async function renderPokemon(pokemon) {
 
     const data = await fetchPokemon(pokemon);
 
-    if (data) {
+    if (!data) return;
 
-        pokemonImage.style.display = 'block';
+    pokemonName.innerHTML = data.name;
+    pokemonNumber.innerHTML = data.id;
 
-        pokemonName.innerHTML = data.name;
-        pokemonNumber.innerHTML = data.id;
+    pokemonImage.src =
+        data.sprites.other["official-artwork"].front_default;
 
-        pokemonImage.src =
-            data.sprites.versions['generation-v']['black-white']
-                .animated.front_default ||
-            data.sprites.front_default;
+    pokemonHeight.innerHTML =
+        `${data.height / 10} m`;
 
-        input.value = '';
+    pokemonWeight.innerHTML =
+        `${data.weight / 10} kg`;
 
-        searchPokemon = data.id;
+    currentPokemon = data.id;
 
-    } else {
+    const typesDiv =
+        document.querySelector(".types");
 
-        pokemonImage.style.display = 'none';
+    typesDiv.innerHTML = "";
 
-        pokemonName.innerHTML = 'Não encontrado';
-        pokemonNumber.innerHTML = '';
-    }
+    data.types.forEach(type => {
+
+        typesDiv.innerHTML += `
+            <span
+            class="type"
+            style="background:${colors[type.type.name]}">
+            ${type.type.name}
+            </span>
+        `;
+
+    });
+
 }
 
-form.addEventListener('submit', (event) => {
+form.addEventListener("submit", (event) => {
 
     event.preventDefault();
 
-    renderPokemon(input.value.toLowerCase());
+    renderPokemon(
+        input.value.toLowerCase()
+    );
 
 });
 
-document.querySelector('.btn-prev')
-    .addEventListener('click', () => {
+document
+    .querySelector(".btn-prev")
+    .addEventListener("click", () => {
 
-        if (searchPokemon > 1) {
-            searchPokemon -= 1;
-            renderPokemon(searchPokemon);
+        if (currentPokemon > 1) {
+
+            currentPokemon--;
+
+            renderPokemon(currentPokemon);
+
         }
 
     });
 
-document.querySelector('.btn-next')
-    .addEventListener('click', () => {
+document
+    .querySelector(".btn-next")
+    .addEventListener("click", () => {
 
-        searchPokemon += 1;
-        renderPokemon(searchPokemon);
+        currentPokemon++;
+
+        renderPokemon(currentPokemon);
 
     });
 
-renderPokemon(searchPokemon);
+renderPokemon(1);
