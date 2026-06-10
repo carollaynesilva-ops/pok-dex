@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokédex</title>
+    <title>Pokédex Explorer</title>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -15,69 +15,161 @@
 
         <aside class="sidebar">
 
-            <h2>Pokédex</h2>
+            <div class="logo">
 
-            <a href="index.php">Início</a>
+                <div class="pokeball-mini"></div>
 
-            <a href="tipos.php?tipo=fire">🔥 Fogo</a>
-            <a href="tipos.php?tipo=water">💧 Água</a>
-            <a href="tipos.php?tipo=grass">🌿 Planta</a>
-            <a href="tipos.php?tipo=electric">⚡ Elétrico</a>
-            <a href="tipos.php?tipo=psychic">🔮 Psíquico</a>
-            <a href="tipos.php?tipo=ghost">👻 Fantasma</a>
-            <a href="tipos.php?tipo=dragon">🐉 Dragão</a>
+                <div>
+                    <h1>Pokédex</h1>
+                    <p>Explorer</p>
+                </div>
+
+            </div>
+
+            <nav>
+
+                <span class="menu-title">
+                    NAVEGAÇÃO
+                </span>
+
+                <a href="index.php">
+                    🏠 Início
+                </a>
+
+                <span class="menu-title">
+                    TIPOS
+                </span>
+
+                <a href="tipos.php?tipo=fire">
+                    🔥 Fogo
+                </a>
+
+                <a href="tipos.php?tipo=water">
+                    💧 Água
+                </a>
+
+                <a href="tipos.php?tipo=grass">
+                    🌿 Planta
+                </a>
+
+                <a href="tipos.php?tipo=electric">
+                    ⚡ Elétrico
+                </a>
+
+                <a href="tipos.php?tipo=ice">
+                    ❄️ Gelo
+                </a>
+
+                <a href="tipos.php?tipo=psychic">
+                    🔮 Psíquico
+                </a>
+
+                <a href="tipos.php?tipo=ghost">
+                    👻 Fantasma
+                </a>
+
+                <a href="tipos.php?tipo=dragon">
+                    🐉 Dragão
+                </a>
+
+            </nav>
 
         </aside>
 
         <main class="content">
 
+            <header class="top-bar">
+
+                <h2>
+                    Banco de Dados Pokémon
+                </h2>
+
+                <p>
+                    Pesquise qualquer Pokémon pelo nome ou número.
+                </p>
+
+            </header>
+
+            <div class="search-box">
+
+                <form class="form">
+
+                    <input
+                        type="search"
+                        class="input-search"
+                        placeholder="Ex: Pikachu ou 25"
+                        required>
+
+                    <button type="submit">
+                        Pesquisar
+                    </button>
+
+                </form>
+
+            </div>
+
             <div class="pokemon-card">
 
-                <img class="pokemon-image">
+                <div class="image-container">
 
-                <span class="pokemon-number"></span>
+                    <img
+                        src=""
+                        class="pokemon-image"
+                        alt="Pokemon">
 
-                <h1 class="pokemon-name"></h1>
+                </div>
 
-                <div class="types"></div>
+                <span class="pokemon-number">
+                    #001
+                </span>
 
-                <div class="info">
+                <h1 class="pokemon-name">
+                    Bulbasaur
+                </h1>
 
-                    <div>
+                <div class="types">
+
+                </div>
+
+                <div class="stats">
+
+                    <div class="stat-box">
+
                         <span>Altura</span>
-                        <p class="pokemon-height"></p>
+
+                        <p class="pokemon-height">
+                            -
+                        </p>
+
                     </div>
 
-                    <div>
+                    <div class="stat-box">
+
                         <span>Peso</span>
-                        <p class="pokemon-weight"></p>
+
+                        <p class="pokemon-weight">
+                            -
+                        </p>
+
                     </div>
 
                 </div>
 
-            </div>
+                <div class="buttons">
 
-            <form class="form">
+                    <button
+                        type="button"
+                        class="btn-prev">
+                        ← Anterior
+                    </button>
 
-                <input
-                    class="input-search"
-                    placeholder="Nome ou número">
+                    <button
+                        type="button"
+                        class="btn-next">
+                        Próximo →
+                    </button>
 
-                <button>
-                    Buscar
-                </button>
-
-            </form>
-
-            <div class="buttons">
-
-                <button class="btn-prev">
-                    Anterior
-                </button>
-
-                <button class="btn-next">
-                    Próximo
-                </button>
+                </div>
 
             </div>
 

@@ -2,18 +2,43 @@
 
 $tipo = $_GET['tipo'] ?? 'fire';
 
+$tiposPT = [
+
+    'fire' => '🔥 Fogo',
+    'water' => '💧 Água',
+    'grass' => '🌿 Planta',
+    'electric' => '⚡ Elétrico',
+    'ice' => '❄️ Gelo',
+    'psychic' => '🔮 Psíquico',
+    'ghost' => '👻 Fantasma',
+    'dragon' => '🐉 Dragão'
+
+];
+
+$nomeTipo =
+    $tiposPT[$tipo] ?? ucfirst($tipo);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Pokémon por Tipo</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/style.css">
+    <title>
+        Pokémon do Tipo
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
 </head>
 
 <body>
@@ -22,9 +47,67 @@ $tipo = $_GET['tipo'] ?? 'fire';
 
         <aside class="sidebar">
 
-            <h2>Pokédex</h2>
+            <div class="logo">
 
-            <a href="index.php">← Voltar</a>
+                <div class="pokeball-mini"></div>
+
+                <div>
+
+                    <h1>Pokédex</h1>
+
+                    <p>Explorer</p>
+
+                </div>
+
+            </div>
+
+            <nav>
+
+                <span class="menu-title">
+                    NAVEGAÇÃO
+                </span>
+
+                <a href="index.php">
+                    🏠 Início
+                </a>
+
+                <span class="menu-title">
+                    TIPOS
+                </span>
+
+                <a href="tipos.php?tipo=fire">
+                    🔥 Fogo
+                </a>
+
+                <a href="tipos.php?tipo=water">
+                    💧 Água
+                </a>
+
+                <a href="tipos.php?tipo=grass">
+                    🌿 Planta
+                </a>
+
+                <a href="tipos.php?tipo=electric">
+                    ⚡ Elétrico
+                </a>
+
+                <a href="tipos.php?tipo=ice">
+                    ❄️ Gelo
+                </a>
+
+                <a href="tipos.php?tipo=psychic">
+                    🔮 Psíquico
+                </a>
+
+                <a href="tipos.php?tipo=ghost">
+                    👻 Fantasma
+                </a>
+
+                <a href="tipos.php?tipo=dragon">
+                    🐉 Dragão
+                </a>
+
+            </nav>
 
         </aside>
 
@@ -32,10 +115,16 @@ $tipo = $_GET['tipo'] ?? 'fire';
 
             <h1 class="titulo-tipo">
 
-                Tipo:
-                <?php echo ucfirst($tipo); ?>
+                <?php echo $nomeTipo; ?>
 
             </h1>
+
+            <p class="subtitulo">
+
+                Explore os Pokémon
+                deste tipo.
+
+            </p>
 
             <div id="listaPokemon">
 
@@ -46,7 +135,8 @@ $tipo = $_GET['tipo'] ?? 'fire';
     </div>
 
     <script>
-        const tipo = "<?php echo $tipo; ?>";
+        const tipo =
+            "<?php echo $tipo; ?>";
     </script>
 
     <script src="js/tipos.js"></script>
